@@ -3,4 +3,13 @@
     <string name="dice_roll">Dice Roll</string>
     <string name="roll">roll</string>
     <string name="dice_image_text">Dice Image</string>
+    <string name="name_text">Krishna Dakshinamurthy</string>
+    <string name="profile_image_con">Profile Image</string>
+    <string name="bio_text_con">This is Krishna Dakshinamurthy.\n\n
+        I\'m a polymath \n
+        and \n an Entrepreneur \n focused on \n building\n modern \n businesses \n using \n \n technical \n  and \n strategical \n solutions</string>
+    <string name="star">It\'s a star</string>
+    <string name="nick_name_str">What\'s your nickname?</string>
+    <string name="done">Done</string>
+    <string name="textview">TextView</string>
 </resources>

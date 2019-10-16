@@ -1,39 +1,54 @@
 package com.example.dash
 
+import android.content.Context
 import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.*
+import androidx.databinding.DataBindingUtil
+import com.example.dash.databinding.ActivityMainBinding
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var diceImage : ImageView
+    private lateinit var binding: ActivityMainBinding
+
+    private val myName: MyName = MyName("Krishna Dakshinamurthy")
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val roll_btn: Button = findViewById(R.id.roll_btn)
-        diceImage = findViewById(R.id.dice_img)
-        roll_btn.setOnClickListener{
-            rollDice()
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        binding.myName = myName
+
+        binding.doneBtn.setOnClickListener {
+            addNickname(it)
         }
+
+
     }
 
-    private fun rollDice() {
-        val randomInt = Random.nextInt(6)+1
+    private fun addNickname(view: View) {
+        binding.apply {
+            // Set the text for nicknameText to the value in nicknameEdit.
+            myName?.nickname = nick_name.text.toString()
 
-        val drawableResource = when(randomInt) {
-            1 -> R.drawable.dice_1
-            2 -> R.drawable.dice_2
-            3 -> R.drawable.dice_3
-            4 -> R.drawable.dice_4
-            5 -> R.drawable.dice_5
-            else -> R.drawable.dice_6
+            invalidateAll()
+
+
+            nick_name.visibility = View.GONE
+            doneBtn.visibility = View.GONE
+            nickname_text.visibility = View.VISIBLE
         }
-        diceImage.setImageResource(drawableResource)
-    }
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+
+
+        }
+
+
 }
